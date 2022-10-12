@@ -3,12 +3,6 @@ pipeline {
   tools {nodejs "Node"}
  
   stages {
-    stage('Example') {
-      steps {
-        sh 'npm config ls'
-      }
-    }
-  
       stage('Code Analysis') {
           environment {
     SCANNER_HOME = tool 'SonarScanner'
