@@ -1,0 +1,63 @@
+<app-common-header [headerText]="headerText" (goBackEvent)="goBack()">
+</app-common-header>
+<div style="background-color: white; height: 1.5625rem; width: 100%"></div>
+<div class="pl-md pr-md">
+  <p class="m-0" style="
+      color: #333a45;
+      font-weight: 600;
+      font-size: 1.3125rem;
+      font-family: arial;
+    ">
+    Step 3/3 - Verify Documents
+  </p>
+  <div class="progress mt-md">
+    <div class="progress-bar" role="progressbar" style="width: 100%; border-radius: 0.625rem; background-color: #6554f2"
+      aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div *ngIf="
+      isVerificationPage() ||
+      isAadharPage() ||
+      isGstinPage() ||
+      isKycVerifiedPage()
+    " class="card" style="margin-top: 3.125rem">
+    <div class="card-body">
+      <div class="colored-background"></div>
+      <ng-container *ngIf="isVerificationPage()">
+        <div class="first-text">
+          Please select any of the
+          {{ optionalDocumentsToVerify.length }} options below to verify your
+          KYC.
+        </div>
+        <ng-container *ngFor="let document of optionalDocumentsToVerify; index as i">
+          <app-verify-button-container [titleText]="document.titleText" [buttonText]="document.buttonText"
+            [footerText]="document.footerText" (buttonClicked)="verifyButtonClickHandler(document)">
+          </app-verify-button-container>
+          <div *ngIf="!isLastDocument(i)" class="horizontal-bar-wrapper">
+            <hr class="horizontal-bar" />
+            <span class="or-text">OR</span>
+            <hr class="horizontal-bar" />
+          </div>
+        </ng-container>
+      </ng-container>
+      <app-aadhar-gstin-otp-generator [businessStructure]="businessStructure" *ngIf="isAadharPage() || isGstinPage()"
+        [isAadharPage]="isAadharPage()" (manualKycEvent)="verifyButtonClickHandler(getManualKycDocument())">
+      </app-aadhar-gstin-otp-generator>
+      <app-kyc-success-container *ngIf="isKycVerifiedPage()"></app-kyc-success-container>
+    </div>
+  </div>
+  <ng-container *ngIf="isManualKycPage()">
+    <div class="title-text">
+      Upload the 2 documents below to verify your KYC.
+      <app-document-input-card [index]="1" (documentSubmitEvent)="documentSubmitEventHandler($event)"
+        (verifyKycEvent)="verifyKyc()">
+      </app-document-input-card>
+      <app-document-input-card [index]="2" (documentSubmitEvent)="documentSubmitEventHandler($event)"
+        (verifyKycEvent)="verifyKyc()" [disabled]="isSecondInputCardDisabled">
+      </app-document-input-card>
+    </div>
+    <button type="submit" class="w-100 btn btn-primary b-0 verify-kyc-button" (click)="verifyKyc()"
+      [disabled]="!documentKycDetail.success">
+      Verify KYC
+    </button>
+  </ng-container>
+</div>

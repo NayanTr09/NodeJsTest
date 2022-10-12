@@ -1,0 +1,115 @@
+body {
+  font-family: sans-serif;
+}
+.text {
+  color: #333a45;
+  font-weight: 500;
+  opacity: 0.8;
+  font-size: 1.125rem;
+}
+.aadhar-card-input {
+  min-height: 3.9375rem;
+  width: 100%;
+  border-radius: 0.625rem;
+  border: 0.125rem solid #eee;
+  margin-top: 1.25rem;
+  padding-left: 1.25rem;
+  font-weight: 400;
+  font-family: sans-serif;
+  .aadhar-label {
+    font-size: 0.8125rem;
+    margin-top: 0.4375rem;
+    color: #333a45;
+    opacity: 0.8;
+    .edit-icon {
+      width: 1.375rem;
+      float: right;
+      margin-right: 1.5625rem;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+  }
+  .aadhar-number {
+    font-size: 1.25rem;
+    color: #333a45;
+    margin-top: 0.125rem;
+  }
+}
+.enter-otp-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  opacity: 0.8;
+  font-family: sans-serif;
+  margin-top: 2.1875rem;
+}
+.otp-input {
+  margin-top: 1.5625rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 100%;
+  .digit-wrapper {
+    width: 12%;
+    display: block;
+    margin-right: 1.5rem;
+    .digit {
+      width: 100%;
+      border: none;
+      font-size: 1.25rem;
+      text-align: center;
+      padding-bottom: 0.3125rem;
+      opacity: 0.6;
+    }
+    .bar {
+      width: 100%;
+      height: 0.3125rem;
+      border-radius: 0.3125rem;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+  .digit-wrapper:last-child {
+    margin-right: 0;
+  }
+}
+.resend-otp-text {
+  float: right;
+  margin-top: 1.6875rem;
+  color: #6f57e9;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+.verify-kyc-button {
+  margin-top: 3.125rem;
+  height: 4.375rem;
+  border-radius: 0.625rem;
+  font-size: 1.25rem;
+  color: white;
+  background: #6f57e9;
+  border: none;
+}
+.verify-kyc-button:disabled,
+.verify-kyc-button[disabled] {
+  background: #a0a0a0 0% 0% no-repeat padding-box;
+  border-radius: 0.3125rem;
+  color: white;
+}
+.label {
+  color: #747474;
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  opacity: 0.5;
+}
+.footer-text {
+  float: cen;
+  text-align: center;
+  margin-top: 10.9375rem;
+  margin-bottom: 2.1875rem;
+  color: #6f57e9;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  cursor: pointer;
+}

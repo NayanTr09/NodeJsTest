@@ -1,0 +1,91 @@
+<div class="card" style="margin: 1em">
+  <div class="card-body">
+    <form [formGroup]="verifyOtpForm">
+      <div class="mb-lg">
+        <img
+          src="https://d2kh7o38xye1vj.cloudfront.net/wp-content/uploads/2018/08/SR-logo.png"
+          class="w-100 pl-lg pr-lg sizing-border-box shiprocket-logo"
+        />
+      </div>
+      <div>
+        <img
+          src="/assets/images/login/verify-otp.png"
+          class="w-100 pl-lg pr-lg sizing-border-box"
+          style="max-height: 18.75rem; object-fit: contain"
+        />
+      </div>
+      <div>
+        <p
+          class="text-center mt-lg mb-sm"
+          style="color: #333a45; font-size: 1.25rem; font-weight: 500"
+        >
+          Verify Mobile Number
+        </p>
+      </div>
+      <div class="pl-lg pr-lg">
+        <p class="text-center" style="color: #333a45; font-size: 1.125rem">
+          An OTP has been sent to your mobile number {{ mobile }}. Please enter
+          it below.
+        </p>
+      </div>
+
+      <div class="w-100 mb-lg mt-md">
+        <div style="display: flex; justify-content: space-between">
+          <div
+            [ngClass]="{ 'ml-sm': !!i }"
+            *ngFor="let input of formInput; index as i"
+          >
+            <input
+              #formRow
+              type="text"
+              formControlName="{{ input }}"
+              class="form-control input-otp-box sizing-border-box text-center"
+              maxlength="1"
+              minlength="1"
+              (keyup)="keyUpEvent($event, i)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-lg mb-lg text-center">
+        <button
+          *ngIf="isOtpOnCallEnabled"
+          style="
+            color: #6f57e9 !important;
+            background-color: transparent;
+            border: none;
+            font-size: 1.125rem;
+          "
+          (click)="handleStartCountdownTimer()"
+        >
+          Get OTP on Call
+        </button>
+        <p *ngIf="isTimerOn" style="color: #797979; font-size: 1.125rem">
+          Get OTP on Call 00:{{ changeTo2Digit(secondsInAMinute - 1) }}
+        </p>
+      </div>
+
+      <div class="button w-100">
+        <button
+          style="font-size: large"
+          [disabled]="verifyOtpForm.invalid"
+          (click)="onSubmit()"
+          class="btn btn-primary verify-otp-button w-100 pt-sm pb-sm border-0"
+        >
+          Submit OTP
+        </button>
+      </div>
+
+      <div class="button text-center w-100 mt-sm">
+        <button
+          (click)="resendOTP()"
+          style="font-size: 1.125rem; color: #6f57e9; font-weight: 400"
+          mat-button
+        >
+          Resend OTP
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

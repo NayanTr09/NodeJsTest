@@ -1,0 +1,228 @@
+<div class="card" style="margin: 1em">
+  <div class="card-body">
+    <form [formGroup]="signUpForm" (ngSubmit)="handleSignUp()">
+      <div class="row m-0">
+        <div class="col-12">
+          <img
+            src="https://d2kh7o38xye1vj.cloudfront.net/wp-content/uploads/2018/08/SR-logo.png"
+            class="w-100 pl-lg pr-lg sizing-border-box shiprocket-logo"
+          />
+        </div>
+        <div class="col-12">
+          <img
+            src="/assets/images/login/sign-up-icon.png"
+            class="w-100 pl-lg pr-lg sizing-border-box"
+            style="max-height: 18.75rem; object-fit: contain"
+          />
+        </div>
+        <div class="col-12">
+          <p
+            class="text-center mt-lg mb-lg"
+            style="color: #333a45; font-size: 1.25rem; font-weight: 500"
+          >
+            Sign Up
+          </p>
+        </div>
+
+        <div class="col-6 mt-sm mb-sm form-label-group p-0 pr-sm">
+          <input
+            type="text"
+            class="form-control"
+            id="first_name"
+            formControlName="first_name"
+            placeholder="First Name"
+          />
+          <label for="first_name">First Name</label>
+          <div
+            *ngIf="
+              first_name?.invalid && (first_name?.dirty || first_name?.touched)
+            "
+            class="alert p-0 text-danger"
+          >
+            <div *ngIf="first_name?.errors?.required">
+              *First Name is required.
+            </div>
+            <div *ngIf="first_name?.errors?.serverError">
+              {{ first_name?.errors?.serverError }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6 mt-sm mb-sm form-label-group p-0">
+          <input
+            type="text"
+            class="form-control"
+            id="last_name"
+            formControlName="last_name"
+            placeholder="Last Name"
+          />
+          <label for="last_name">Last Name</label>
+          <div
+            *ngIf="
+              last_name?.invalid && (last_name?.dirty || last_name?.touched)
+            "
+            class="alert p-0 text-danger"
+          >
+            <div *ngIf="last_name?.errors?.required">
+              *Last Name is required.
+            </div>
+            <div *ngIf="last_name?.errors?.serverError">
+              {{ last_name?.errors?.serverError }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-sm mb-sm form-label-group p-0">
+          <input
+            type="text"
+            class="form-control"
+            id="company_name"
+            formControlName="company_name"
+            placeholder="Company Name"
+          />
+          <label for="company_name">Company Name</label>
+          <div
+            *ngIf="
+              company_name?.invalid &&
+              (company_name?.dirty || company_name?.touched)
+            "
+            class="alert p-0 text-danger"
+          >
+            <div *ngIf="company_name?.errors?.required">
+              *Company Name is required.
+            </div>
+            <div *ngIf="company_name?.errors?.serverError">
+              {{ company_name?.errors?.serverError }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-sm mb-sm form-label-group p-0">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            placeholder="name@example.com"
+          />
+          <label for="email">Email address</label>
+          <div
+            *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+            class="alert p-0 text-danger"
+          >
+            <div *ngIf="email?.errors?.required">*Email is required.</div>
+            <div *ngIf="email?.errors?.email">*Email is incorrect</div>
+            <div *ngIf="email?.errors?.serverError">
+              {{ email?.errors?.serverError }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-sm mb-sm form-label-group p-0">
+          <input
+            type="text"
+            class="form-control"
+            id="phone"
+            formControlName="phone"
+            placeholder="9999999999"
+            minlength="10"
+            maxlength="10"
+          />
+          <label for="phone">Phone</label>
+          <div
+            *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)"
+            class="alert p-0 text-danger"
+          >
+            <div *ngIf="phone?.errors?.required">*Phone is required.</div>
+            <div *ngIf="phone?.errors?.pattern">*Phone is not valid.</div>
+            <div *ngIf="phone?.errors?.serverError">
+              {{ phone?.errors?.serverError }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-sm form-label-group p-0 input-group">
+          <input
+            type="{{ getPasswordInputType() }}"
+            class="form-control border-right-0"
+            id="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <label for="password" style="z-index: 3">Password</label>
+          <div class="input-group-append">
+            <span
+              class="input-group-text"
+              id="basic-addon1"
+              style="
+                padding: 0.375rem 1.75rem;
+                background: none;
+                border-left: none;
+              "
+              ><i
+                *ngIf="!isPasswordVisible"
+                (click)="isPasswordVisible = !isPasswordVisible"
+                class="material-icons"
+                >visibility_off</i
+              >
+              <i
+                *ngIf="isPasswordVisible"
+                (click)="isPasswordVisible = !isPasswordVisible"
+                class="material-icons"
+                >visibility</i
+              ></span
+            >
+          </div>
+        </div>
+        <div
+          *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+          class="alert p-0 text-danger"
+        >
+          <div *ngIf="password?.errors?.required">*Password is required.</div>
+          <div *ngIf="password?.errors?.pattern">
+            *Password must contain one capital, one small, one number and one
+            special character
+          </div>
+          <div *ngIf="password?.errors?.serverError">
+            {{ password?.errors?.serverError }}
+          </div>
+        </div>
+      </div>
+      <p class="mt-md mb-md">
+        By signing up, you agree to our
+        <a
+          class="text-decoration-none"
+          style="color: #6f57e9 !important; cursor: pointer"
+          target="_blank"
+          href="https://www.shiprocket.in/privacy-policy/"
+          (click)="clickedOnPrivacyPolicy()"
+        >
+          Privacy Policy</a
+        >
+        and
+        <a
+          class="text-decoration-none"
+          style="color: #6f57e9 !important; cursor: pointer"
+          target="_blank"
+          href="https://www.shiprocket.in/merchant-agreement/"
+          (click)="clickedOnTandC()"
+          >T&C</a
+        >
+      </p>
+      <div class="button w-100">
+        <button
+          type="submit"
+          mat-button
+          class="signup-button w-100"
+          [disabled]="signUpForm.invalid"
+        >
+          Sign Up
+        </button>
+      </div>
+      <p class="mt-md mb-md text-center">
+        Already have an account?
+        <a
+          style="color: #6f57e9 !important; cursor: pointer"
+          (click)="navigateToSignIn()"
+        >
+          Sign In</a
+        >
+      </p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="title-text">Document {{ index }}</div>
+<div class="card" style="margin-top: 1.5625rem">
+  <div class="card-body">
+    <div class="colored-background"></div>
+    <div class="document-type">
+      <div class="document-type-text">
+        Document Type
+        <div *ngIf="showEditButton()" class="change-document-text" (click)="editDocument()">
+          Change Document {{index}}
+        </div>
+      </div>
+      <app-documents-dropdown [placeholderText]="'Select Document Type'" [options]="documentsRequired[index-1]"
+        [disabled]="isDropdownDisabled()" (selection)="documentTypeSelectionHandler($event)"
+        [selected]="convertDocumentTypeToOption(documentType)">
+      </app-documents-dropdown>
+      <div class="document-type-text document-images-margin">
+        Document Images
+      </div>
+      <div class="all-upload-wrapper">
+        <div class="upload-images-container" *ngFor="let x of counter(numberOfImagesToUpload); index as ind">
+          <ng-container *ngIf="files[ind].imageUrl === ''">
+            <label for="{{ index }}image{{ ind }}" class="upload-image"
+              [ngClass]="'box-float-left'">
+              <img *ngIf="!imageInputDisabled()" class="icon" src="/assets/images/Layer 15.png" />
+              <img *ngIf="imageInputDisabled()" class="icon" src="/assets/images/Layer 15 copy.png" />
+              <div class="upload-images-text" [ngClass]="{ disabled: imageInputDisabled() }">
+                Upload Images {{ind%2 ? 'Back' : 'Front'}} Side
+              </div>
+            </label>
+            <input *ngIf="!disabled" class="d-none" type="file" id="{{ index }}image{{ ind }}"
+              (change)="onFileChanged($event)" accept="image/*" />
+          </ng-container>
+          <img *ngIf="files[ind].imageUrl" class="upload-image document-padding"
+            [ngClass]="'box-float-left'" src="{{ files[ind].imageUrl }}" />
+        </div>
+      </div>
+      <div *ngIf="showDocumentDetails()" class="document-details-wrapper">
+        <div class="document-detail">
+          <div class="title">
+            Document Number
+          </div>
+          <div class="doc-text">
+            {{getDocumentNumber()}}
+          </div>
+        </div>
+        <div class="document-detail">
+          <div class="title">
+            Name on Document
+          </div>
+          <div class="doc-text">
+            {{getDocumentName()}}
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showDocumentInput()" class="records-mismatch">
+        <div class="icon-wrapper">
+          <img class="error-circle-icon" src="/assets/images/error-circle-icon.png" />
+        </div>
+        <div class="records-mismatch-text">
+          The uploaded documents do not match any goverment records. Please fill the below details manually for KYC.
+        </div>
+      </div>
+      <div *ngIf="showDocumentInput()" class="document-details-wrapper">
+        <input [(ngModel)]="documentNumber" class="document-detail" placeholder="Document Number" />
+        <input [(ngModel)]="documentName" class="document-detail" placeholder="Name on Document" />
+      </div>
+      <div class="submit-button-wrapper">
+        <button class="submit-document-button" [disabled]="isSubmitButtonDisabled()" (click)="submitDocument()">
+          Submit Document {{ index }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

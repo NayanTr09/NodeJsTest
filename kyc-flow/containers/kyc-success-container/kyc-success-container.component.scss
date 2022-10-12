@@ -1,0 +1,73 @@
+.verified-icon-container {
+  margin: 13.75rem auto;
+  margin-bottom: 0;
+  width: fit-content;
+  .verified-icon {
+    width: 7.8125rem;
+  }
+}
+.successfull-text {
+  text-align: center;
+  color: #333a45;
+  font-weight: 500;
+  font-size: 1.25rem;
+  margin-top: 1.5625rem;
+}
+.shipping-now-text {
+  margin-top: 0.625rem;
+  font-size: 1.6875rem;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: #333a45;
+  margin-top: 1.875rem;
+}
+.orders-button {
+  width: 15.6875rem;
+  height: 3rem;
+  border-radius: 0.4375rem;
+  margin: 2.5rem auto;
+  margin-bottom: 13.75rem;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 0.125rem solid #7056fe;
+  color: #6f57e9;
+  line-height: 3rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+.orders-button:hover {
+  background: rgba(111, 87, 233, 0.1);
+}
+.thank-you-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 12.8125rem;
+  font-weight: 500;
+  color: #333a45;
+}
+.text1 {
+  text-align: center;
+  margin: 2.5rem 2.8125rem;
+  font-size: 1.1875rem;
+  color: #333a45;
+  margin-bottom: 0;
+}
+.text2 {
+  text-align: center;
+  margin: 1.4375rem 2rem;
+  font-size: 1.1875rem;
+  color: #333a45;
+  font-weight: 500;
+}
+.assistance-card {
+  border-radius: 0.5625rem;
+  text-align: center;
+  margin: 2.625rem 0.3125rem;
+  background: #f0f4fd 0% 0% no-repeat padding-box;
+  height: 10.9375rem;
+  padding: 2.1875rem 2.1875rem;
+  font-size: 1.1875rem;
+  color: rgba(60, 60, 60, 0.7);
+  margin-bottom: 3.125rem;
+}

@@ -1,0 +1,71 @@
+<app-common-header [headerText]="headerText" (goBackEvent)="goBack()">
+</app-common-header>
+<div class="pl-md pr-md">
+    <div class="card" style="margin-top: 3.125rem">
+        <div class="card-body">
+            <div class="colored-background"></div>
+            <div class="colored-card" [ngClass]="getColoredCardClass(getColorIndex())">
+                <div class="pair-container">
+                    <div class="first-text-container">
+                        <div class="first-text">
+                            KYC Status
+                        </div>
+                        <div class="colon">
+                            :
+                        </div>
+                    </div>
+                    <div class="status" [ngClass]="getColoredStatusClass(getColorIndex())">
+                        {{kycStatus}}
+                    </div>
+                </div>
+                <div class="pair-container" *ngIf="verifiedOn">
+                    <div class="first-text-container">
+                        <div class="first-text">
+                            Verified On
+                        </div>
+                        <div class="colon">
+                            :
+                        </div>
+                    </div>
+                    <div class="second-text">
+                        {{verifiedOn | date:'d MMMM y'}}
+                    </div>
+                </div>
+                <div class="pair-container" *ngIf="isRejected()">
+                    <div class="first-text-container">
+                        <div class="first-text">
+                            Reason For Rejection
+                        </div>
+                        <div class="colon">
+                            :
+                        </div>
+                    </div>
+                    <div class="second-text">
+                        {{getRejectReason()}}
+                    </div>
+                </div>
+            </div>
+            <div class="center-text">
+                Click below if you want to update your business structure to {{planeText[0]}} {{planeText[1] ? 'or
+                '+planeText[1] : ''}} &
+                verify
+                your KYC again.
+            </div>
+            <div class="verify-buttons-container">
+                <div class="verify-button" (click)="buttonClickHandler(buttonText[0])">
+                    {{buttonText[0]}}
+                </div>
+                <ng-container *ngIf="planeText[1]">
+                    <div class="horizontal-bar-wrapper">
+                        <hr class="horizontal-bar" />
+                        <span class="or-text">OR</span>
+                        <hr class="horizontal-bar" />
+                    </div>
+                    <div class="verify-button" (click)="buttonClickHandler(buttonText[1])">
+                        {{buttonText[1]}}
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

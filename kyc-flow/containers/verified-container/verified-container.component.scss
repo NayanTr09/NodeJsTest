@@ -1,0 +1,109 @@
+.card {
+    margin-top: 3.75rem !important;
+    box-shadow: 0 0 0.75rem -0.125rem #d6dae7;
+    border-radius: 0.5625rem;
+}
+.card-body {
+    padding-bottom: 2.5rem;
+    .center-text {
+        color: rgba(51, 58, 69, 0.9);
+        font-size: 1.1875rem;
+        margin-top: 1.875rem;
+        font-weight: 500;
+        line-height: 1.5625rem;
+        margin-right: 1.25rem;
+    }
+    .verify-buttons-container {
+        margin-top: 1.875rem;
+        .verify-button {
+            border: 0.0625rem solid #7056fe;
+            border-radius: 0.4375rem;
+            height: 3.9375rem;
+            line-height: 3.9375rem;
+            text-align: center;
+            font-size: 1.125rem;
+            color: #6f57e9;
+            margin-top: 0.9375rem;
+        }
+        .horizontal-bar-wrapper {
+            margin: 3.125rem 0;
+            .horizontal-bar {
+                display: inline-block;
+                width: calc((100% - 1.875rem) / 2);
+                color: #333a45;
+            }
+            .or-text {
+                width: 1.875rem;
+                color: #333a45;
+                opacity: 0.6;
+                position: relative;
+                top: -0.625rem;
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    .colored-card {
+        border-radius: 0.5625rem;
+        padding: 0.625rem 1.5625rem;
+        .pair-container {
+            margin: 1.25rem 0;
+            display: flex;
+            .first-text-container {
+                display: inline-flex;
+                position: relative;
+                width: 5.625rem;
+                .first-text {
+                    width: fit-content;
+                    color: #333a45;
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+                .colon {
+                    position: absolute;
+                    right: 0;
+                    font-weight: 500;
+                }
+            }
+            .status {
+                font-size: 0.8125rem;
+                border-radius: 0.3125rem;
+                height: 1.625rem;
+                min-width: 5.6875rem;
+                padding: 0 0.3125rem;
+                text-align: center;
+                line-height: 1.625rem;
+                margin-left: 0.25rem;
+                margin-top: -0.1875rem;
+            }
+            .status-green {
+                background: #bffeb9 0% 0% no-repeat padding-box;
+                color: #5eb438;
+            }
+            .status-orange {
+                background: #FCE3B9 0% 0% no-repeat padding-box;
+                color: #DC7E18;
+            }
+            .status-red {
+                background: #FFBCBC 0% 0% no-repeat padding-box;
+                color: #ED1F1F;
+            }
+            .second-text {
+                color: #787878;
+                font-size: 1rem;
+                font-weight: 500;
+                margin-left: 0.25rem;
+            }
+        }
+    }
+    .colored-card-green {
+        background: rgba(221, 255, 218, 0.5);
+    }
+    .colored-card-orange {
+        background: rgba(255,241,218,0.51);
+    }
+    .colored-card-red {
+        background: rgba(255,218,218,0.51);
+    }
+}
+

@@ -1,0 +1,77 @@
+<div class="card" style="margin: 1em">
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-lg">
+        <img src="https://d2kh7o38xye1vj.cloudfront.net/wp-content/uploads/2018/08/SR-logo.png"
+          class="w-100 pl-lg pr-lg sizing-border-box shiprocket-logo" />
+      </div>
+      <div>
+        <img src="/assets/images/login/login-icon.png" class="w-100 pl-lg pr-lg sizing-border-box"
+          style="max-height: 18.75rem; object-fit: contain" />
+      </div>
+      <div>
+        <p class="text-center mt-lg mb-lg" style="color: #333a45; font-size: 1.25rem; font-weight: 500">
+          Sign In
+        </p>
+      </div>
+      <div class="form-label-group mb-3">
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="name@example.com"
+          style="border: 0.0625rem solid #dad9db" />
+        <label for="email">Email address</label>
+      </div>
+      <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert p-0 text-danger">
+        <div *ngIf="email?.errors?.required">*Email is required.</div>
+        <div *ngIf="email?.errors?.email">*Email is incorrect</div>
+        <div *ngIf="email?.errors?.serverError">
+          {{ email?.errors?.serverError }}
+        </div>
+      </div>
+      <div class="form-label-group input-group">
+        <input type="{{ getPasswordInputType() }}" class="form-control border-right-0" id="password"
+          formControlName="password" placeholder="Password" style="border: 0.0625rem solid #ced4da !important" />
+        <label for="password" style="z-index: 3">Password</label>
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon1" style="
+              padding: 0.375rem 1.75rem;
+              background: none;
+              border-left: none;
+            "><i *ngIf="!isPasswordVisible" (click)="isPasswordVisible = !isPasswordVisible"
+              class="material-icons">visibility_off</i>
+            <i *ngIf="isPasswordVisible" (click)="isPasswordVisible = !isPasswordVisible"
+              class="material-icons">visibility</i></span>
+        </div>
+      </div>
+      <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert p-0 text-danger">
+        <div *ngIf="password?.errors?.required">*Password is required.</div>
+        <div *ngIf="password?.errors?.serverError">
+          {{ password?.errors?.serverError }}
+        </div>
+      </div>
+
+      <div class="forgot-password">
+        <div [routerLink]="['/auth/forgot-password']">Forgot password?</div>
+      </div>
+
+      <div>
+        <p class="mt-md mb-md" style="margin-top: 35px !important;">
+          By signing up, you agree to our
+          <a style="color: #6f57e9 !important; cursor: pointer" (click)="clickedOnPrivacyPolicy()" href="https://www.shiprocket.in/privacy-policy/">
+            Privacy Policy</a>
+          and
+          <a style="color: #6f57e9 !important; cursor: pointer" (click)="clickedOnTandC()"
+            href="https://www.shiprocket.in/merchant-agreement/">T&C</a>
+        </p>
+      </div>
+      <div class="button w-100">
+        <button class="btn btn-primary login-button w-100 border-0" type="submit" [disabled]="loginForm.invalid">
+          Sign In
+        </button>
+      </div>
+      <p class="mt-md mb-md text-center">
+        Don’t have an account?
+        <a style="color: #6f57e9 !important; cursor: pointer" (click)="navigateToSignUp()">
+          Sign Up</a>
+      </p>
+    </form>
+  </div>
+</div>

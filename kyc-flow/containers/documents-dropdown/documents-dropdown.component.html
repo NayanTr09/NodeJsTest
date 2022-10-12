@@ -1,0 +1,39 @@
+<div class="relative-wrapper">
+  <div
+    class="dropdown-container"
+    [ngClass]="{ 'dropdown-box-shadow': areOptionsVisible, disabled: disabled }"
+  >
+    <div #toggleButton class="placeholder-container" (click)="toggleOptionsVisibility()">
+      <span class="placeholder">
+        <ng-container *ngIf="selected.display === undefined">
+          {{ placeholderText }}
+        </ng-container>
+        <ng-container *ngIf="selected.display !== undefined">
+          {{ selected.display }}
+        </ng-container>
+      </span>
+      <img
+        class="icon"
+        [ngClass]="{ 'icon-disabled': disabled }"
+        *ngIf="!areOptionsVisible"
+        src="/assets/images/angle-down.png"
+      />
+      <img
+        class="icon"
+        *ngIf="areOptionsVisible"
+        src="/assets/images/angle-up.png"
+      />
+    </div>
+    <div class="list-container" *ngIf="areOptionsVisible">
+      <div class="horizontal-bar"></div>
+      <div
+        class="list-item"
+        *ngFor="let option of options"
+        (click)="selectionHandler(option)"
+        [ngClass]="{ selected: selected.value === option.value }"
+      >
+        <span class="list-item-text">{{ option.display }}</span>
+      </div>
+    </div>
+  </div>
+</div>

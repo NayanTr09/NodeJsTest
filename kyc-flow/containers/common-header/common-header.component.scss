@@ -1,0 +1,28 @@
+.large-container {
+  background-color: white;
+  position: relative;
+  .wrapper {
+    background-color: #eaf0fd;
+    height: 6.5625rem;
+    width: 100%;
+    border-bottom-left-radius: 3.125rem;
+    border-bottom-right-radius: 3.125rem;
+    padding-top: 2.5rem;
+    box-sizing: border-box;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .header-text {
+    font-size: 1.5625rem;
+    color: #3e3e41;
+    font-weight: 400;
+    margin-top: -0.5rem;
+  }
+  .background {
+    position: absolute;
+    height: 12.5rem;
+    background: aliceblue;
+    width: 100%;
+    z-index: -1;
+  }
+}

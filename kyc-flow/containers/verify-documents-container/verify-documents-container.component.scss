@@ -1,0 +1,62 @@
+.first-text {
+  color: #333a45;
+  font-weight: 500;
+  font-size: 3.33vw;
+  margin-top: 0.75rem !important;
+  margin-right: 3.125rem;
+}
+.horizontal-bar-wrapper {
+  margin: 3.125rem 0;
+  .horizontal-bar {
+    display: inline-block;
+    width: calc((100% - 1.875rem) / 2);
+    color: #333a45; 
+  }
+  .or-text {
+    width: 1.875rem;
+    color: #333a45;
+    opacity: 0.6;
+    position: relative;
+    top: -0.625rem;
+    font-size: 3.70vw;
+  }
+}
+.card {
+  margin-top: 3.75rem  !important;
+  box-shadow: 0 0 0.75rem -0.125rem #d6dae7;
+  border-radius: 0.5625rem;
+}
+
+.title-text {
+  font-size: 3.52vw;
+  margin-top: 1.25rem;
+  /* color: #333A45; */
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: sans-serif;
+  .document-container {
+    margin-top: 2.5rem;
+    font-weight: 600;
+    font-size: 3.88vw;
+    color: rgba(51, 58, 69, 0.9);
+    font-family: sans-serif;
+  }
+}
+.card-body {
+  padding-bottom: 0;
+}
+.verify-kyc-button {
+  margin-top: 3.125rem;
+  height: 4.375rem;
+  border-radius: 0.625rem;
+  font-size: 3.70vw;
+  color: white;
+  background: #6f57e9;
+  border: none;
+}
+.verify-kyc-button:disabled,
+.verify-kyc-button[disabled] {
+  background: #a0a0a0 0% 0% no-repeat padding-box;
+  border-radius: 0.3125rem;
+  color: white;
+}

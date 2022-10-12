@@ -1,0 +1,104 @@
+.upper-text {
+  font-weight: 500;
+  font-size: 1.1875rem;
+  color: #333a45;
+  opacity: 90%;
+  margin-top: 0.5rem;
+  margin-left: 0.125rem;
+  margin-right: 1.25rem;
+  font-family: sans-serif;
+}
+.dashed-space {
+  color: #555;
+  margin: 1.25rem 0.3125rem;
+  padding: 0;
+  line-height: 2.5rem;
+  width: calc(100% -2 * 2.6875rem);
+  height: 25.4375rem;
+  display: block;
+  border: 0.1875rem dashed #dedede;
+  position: relative;
+  .canvas-container {
+    text-align: center;
+    .canvas {
+      margin: 1rem 0.9375rem;
+      max-height: 23.125rem;
+      max-width: calc(100% - 2 * 0.9375rem);
+      -o-object-fit: contain; /* for Opera Mini */
+      object-fit: contain;
+    }
+    .circle {
+      position: absolute;
+      right: 0.125rem;
+      top: 0.125rem;
+      width: 2.8125rem;
+      height: 2.8125rem;
+      background: #2ada3f;
+      border-radius: 1.375rem;
+      .tick-png {
+        position: absolute;
+        width: 1.4375rem;
+        height: 1.0625rem;
+        top: 0.875rem;
+        left: 0.6875rem;
+      }
+    }
+  }
+}
+
+/* input file style */
+
+.input-file {
+  width: 0.0.0625rem;
+  height: 0.0.0625rem;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  + .js-labelFile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 0.625rem;
+    cursor: pointer;
+    .icon:before {
+      //font-awesome
+      content: "\f093";
+    }
+    &.has-file {
+      .icon:before {
+        //font-awesome
+        content: "\f00c";
+        color: #5aac7b;
+      }
+    }
+  }
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+.tap-here-icon {
+  width: 1.5625rem;
+  margin: 0 auto;
+  margin-top: 8.8125rem;
+}
+.video {
+  margin: 1rem 0.9375rem;
+  max-height: 23.125rem;
+  max-width: calc(100% - 2 * 0.9375rem);
+}
+.change-image-text {
+  color: #6f57e9;
+  border: 0;
+  font-size: 1.125rem;
+  background: none;
+  margin: 1.125rem 0;
+}
+.card {
+  margin-top: 3.75rem !important;
+  box-shadow: 0 0 0.75rem -0.125rem #d6dae7;
+  border-radius: 0.5625rem;
+}

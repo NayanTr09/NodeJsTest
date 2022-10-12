@@ -1,0 +1,197 @@
+<div *ngIf="!isSearchBarOpen && !selectedOrderIds.length">
+  <div style="background-color: white">
+    <div class="pr-md pl-md pt-md">
+      <app-complete-kyc *ngIf="isKycEnabled"></app-complete-kyc>
+    </div>
+    <div style="width: 100%; box-sizing: border-box; padding: 1.25rem">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <span style="font-size: 1.4375rem; font-weight: 500"> Orders</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <img
+            (click)="handleClickSearch()"
+            src="/assets/images/orders/search.png"
+            style="height: 1.5625rem; object-fit: cover"
+          />
+          &nbsp;&nbsp;&nbsp;
+          <img
+            (click)="openFiltersBottomSheet()"
+            src="/assets/images/orders/filter.png"
+            style="height: 1.5625rem; object-fit: cover; margin-left: 1em"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="selectedOrderIds.length">
+  <div style="background-color: white">
+    <div
+      style="
+        background-color: #eaf0fd;
+        height: 5.625rem;
+        width: 100%;
+        padding: 1.25rem 0;
+        box-sizing: border-box;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      "
+    >
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+          <i class="material-icons mr-md" (click)="clearSelectedOrderIdList()"
+            >close</i
+          >
+          <span>&nbsp; {{ selectedOrderIds.length }} Selected</span>
+        </div>
+        <div class="d-flex align-items-center">
+          <i
+            class="material-icons ml-md"
+            data-toggle="modal"
+            data-target="#multipleSelectedOpOrders"
+            >more_vert</i
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="input-group mb-3" *ngIf="isSearchBarOpen">
+  <div class="input-group-prepend">
+    <span
+      class="input-group-text border-right-0"
+      style="background-color: white"
+    >
+      <i class="material-icons">search</i>
+    </span>
+  </div>
+  <input
+    id="searchInput"
+    type="text"
+    class="form-control"
+    placeholder="Search for Order ID"
+    aria-label="Search"
+    [(ngModel)]="searchText"
+    (keyup)="handleSearch()"
+    style="
+      border: 0.0625rem solid #ced4da !important;
+      border-left: none;
+      border-right: none;
+      box-sizing: content-box;
+    "
+    aria-describedby="basic-addon1"
+  />
+  <div class="input-group-append">
+    <span
+      class="input-group-text border-left-0"
+      (click)="handleClickSearchClose()"
+      style="background-color: white"
+    >
+      <i class="material-icons">close</i>
+    </span>
+  </div>
+</div>
+
+<div *ngIf="!isSearchBarOpen">
+  <app-common-tab-select
+    [tabList]="tabList"
+    [activeTabIndex]="activeTabIndex"
+    (onTabChange)="onTabChange($event)"
+  >
+  </app-common-tab-select>
+</div>
+
+<div
+  class="pr-md pl-md mt-lg"
+  style="top: 7.5rem; width: 100%"
+  infiniteScroll
+  [infiniteScrollDistance]="INFINITE_SCROLL_CONFIG.SCROLL_DOWN_DISTANCE"
+  [infiniteScrollThrottle]="INFINITE_SCROLL_CONFIG.THROTTLE"
+  [infiniteScrollDisabled]="isInfiniteScrollDisabled"
+  (scrolled)="onOrderListScrollDown()"
+  *ngIf="searchedOrderList.length"
+>
+  <div
+    #longPressDiv
+    long-press
+    class="mt-md mb-md noselect"
+    id="{{ orderItem.id }}"
+    (click)="navigateToOrderDetails($event, orderItem)"
+    (onLongPress)="onLongPress(orderItem)"
+    (onLongPressing)="onLongPressing()"
+    *ngFor="let orderItem of searchedOrderList; index as i"
+    oncontextmenu="return false;"
+    [ngClass]="{
+      'disabled-order':
+        orderItem.status_code == 42 ||
+        orderItem.status_code == 10
+    }"
+  >
+    <app-order-list-item-card
+      (getOrderListEvent) = "orderList=[];handleGetOrderList(filterValues.type)"
+      [orderItem]="orderItem"
+      [isSelectedOrder]="isSelectedOrder(orderItem.id)"
+    >
+    </app-order-list-item-card>
+  </div>
+</div>
+
+<div *ngIf="isOrderListEmpty">
+  <img
+    src="/assets/images/no_data.png"
+    class="w-100 p-3 sizing-border-box"
+    style="max-height: 18.75rem; object-fit: contain"
+  />
+</div>
+
+<div
+  class="modal fade"
+  id="multipleSelectedOpOrders"
+  tabindex="-1"
+  aria-labelledby="multipleSelectedOpOrders"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered justify-content-center">
+    <div class="modal-content" style="width: auto">
+      <div class="modal-body">
+        <ul style="list-style-type: none; padding: 0; margin: 0">
+          <li>
+            <a
+              style="margin-bottom: 2px"
+              class="dropdown-item p-0"
+              href="javascript:void(0)"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="handleDownloadMultipleInvoices()"
+              >Download Invoices</a
+            >
+          </li>
+          <li *ngIf="this.activeTabIndex == this.tabList[1].index">
+            <a
+              style="margin-top: 2px"
+              class="dropdown-item p-0"
+              href="javascript:void(0)"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="handleDownloadMultipleLabels()"
+              >Download Labels</a
+            >
+          </li>
+          <li *ngIf="false">
+            <a
+              style="margin-top: 2px"
+              class="dropdown-item p-0"
+              href="javascript:void(0)"
+              data-dismiss="modal"
+              aria-label="Close"
+              (click)="handleCancelMultipleOrder()"
+              >Cancel Order</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

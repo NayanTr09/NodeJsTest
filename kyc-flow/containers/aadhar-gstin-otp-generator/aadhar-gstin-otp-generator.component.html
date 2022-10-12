@@ -1,0 +1,83 @@
+<p *ngIf="state === allStates[0] || state === allStates[1]" class="text">
+  Enter your {{ isAadharPage ? "Aadhaar Card" : "GSTIN" }} number to generate
+  OTP & auto verify your KYC.
+</p>
+<form
+  [formGroup]="isAadharPage ? aadharCardForm : gstinForm"
+  *ngIf="state === allStates[0]"
+>
+  <input
+    [formControlName]="isAadharPage ? 'aadharCardNumber' : 'gstinNumber'"
+    (keydown)="prevent($event)"
+    type="string"
+    [placeholder]="isAadharPage ? 'Aadhaar Card Number' : 'GSTIN Number'"
+    class="aadhar-card-input"
+    [maxlength]="isAadharPage ? 12 : 15"
+  />
+  <div class="label">
+    {{
+      isAadharPage
+        ? "Enter 12 digit Aadhaar Card Number"
+        : "Enter 15 digit GSTIN Number"
+    }}
+  </div>
+  <button
+    type="submit"
+    class="w-100 btn btn-primary b-0 verify-kyc-button"
+    [disabled]="isAadharPage ? aadharCardForm.invalid : gstinForm.invalid"
+    (click)="submitNumberAndGenerateOtp()"
+  >
+    Generate OTP
+  </button>
+</form>
+<div
+  [formGroup]="isAadharPage ? aadharCardForm : gstinForm"
+  *ngIf="state === allStates[1]"
+>
+  <div class="aadhar-card-input" style="margin-top: 2.5rem">
+    <div class="aadhar-label">
+      {{ isAadharPage ? "Aadhar Card Number" : "GSTIN Number" }}
+      <img
+        class="edit-icon"
+        (click)="editAadhar()"
+        src="assets/images/iconfinder_write_edit_new_pen_draw_3994420.png"
+      />
+    </div>
+    <div class="aadhar-number">
+      {{
+        isAadharPage
+          ? changeToAadharFormat(aadharCardForm.value.aadharCardNumber)
+          : gstinForm.value.gstinNumber
+      }}
+    </div>
+  </div>
+  <label class="enter-otp-text">Enter OTP</label>
+  <div class="otp-input">
+    <div class="digit-wrapper" *ngFor="let num of numbers; index as i">
+      <input
+        id="{{ i }}"
+        class="digit"
+        type="digit"
+        maxlength="1"
+        size="1"
+        (keydown)="prevent($event)"
+        (keyup)="next($event, i)"
+        autocomplete="off"
+      />
+      <div class="bar"></div>
+    </div>
+  </div>
+  <div class="resend-otp-text" (click)="resendOtp()">Re-send OTP</div>
+  <button
+    type="submit"
+    class="w-100 btn btn-primary b-0 verify-kyc-button"
+    [disabled]="!isOtpFilled"
+    (click)="submit()"
+  >
+    Verify KYC
+  </button>
+</div>
+<div *ngIf="state === allStates[0] || state === allStates[1]" class="footer-text" (click)="manualKycEvent.emit()">
+  Complete KYC Through Manual Process instead
+</div>
+<app-kyc-success-container *ngIf="state === allStates[2]"></app-kyc-success-container>

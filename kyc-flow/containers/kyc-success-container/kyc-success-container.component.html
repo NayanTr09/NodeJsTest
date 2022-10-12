@@ -1,0 +1,22 @@
+<ng-container *ngIf="isImmediateSuccess()">
+  <div class="verified-icon-container">
+    <img class="verified-icon" src="/assets/images/verified icon.png" />
+  </div>
+  <div class="successfull-text">Your KYC has been successfully verified!</div>
+  <div class="shipping-now-text">Start Shipping Now!</div>
+  <div class="orders-button" (click)="goToMyOrders()">Go To My Orders</div>
+</ng-container>
+<ng-container *ngIf="isUnderReview()">
+  <div class="thank-you-header">Thank You!</div>
+  <div class="text1">
+    Your KYC details have been submitted, & are under review.
+  </div>
+  <div class="text2">
+    The process takes up to 2-3 business days, post which we will notify you via
+    Email & SMS.
+  </div>
+  <div class="assistance-card">
+    For any assistance, please contact us at 1800-3690-3690
+  </div>
+  <div class="orders-button" (click)="goToMyOrders()">Go To Home</div>
+</ng-container>

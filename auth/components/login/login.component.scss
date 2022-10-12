@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  justify-content: center;
+  margin: 3.125rem 0;
+}
+
+.mat-form-field {
+  width: 100%;
+  min-width: 18.75rem;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.error {
+  padding: 1rem;
+  width: 18.75rem;
+  color: white;
+  background-color: red;
+}
+
+.login-button {
+  background-color: #6f57e9 !important;
+  color: white;
+  width: 100%;
+}
+
+.forgot-password {
+  float: right;
+  color: #6f57e9 !important;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 100%;
+  text-align: right;
+}
