@@ -12,7 +12,7 @@ pipeline {
       stage('Code Analysis') {
           environment {
     SCANNER_HOME = tool 'SonarScanner'
-    PROJECT_NAME = "ChatApp"
+    PROJECT_NAME = "SRWEB"
   }
   steps {
     withSonarQubeEnv('SonarQube Server') {
